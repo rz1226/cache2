@@ -28,6 +28,9 @@ func NewCCache(maxSize int) *CCache {
 	cache.c = gccache.New(gccache.Configure().MaxSize(int64(maxSize)).ItemsToPrune(count))
 	return cache
 }
+func (c *CCache) Del(key string) {
+	c.c.Delete(key)
+}
 
 //用key去找，找到返回，找不到则运行f，成功后把结果放入cache，再返回
 func (c *CCache) Use(key string, f func() (interface{}, error), duration time.Duration) (interface{}, error) {
