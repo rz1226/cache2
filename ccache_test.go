@@ -16,8 +16,8 @@ func Test_ccache(t *testing.T) {
 
 	res, err := cache.Use("key", f, time.Second*1)
 	fmt.Println(res, err)
-	time.Sleep(time.Second * 2)
-
+	//time.Sleep(time.Second * 2)
+	cache.Del("key")
 	f2 := func() (interface{}, error) {
 		return "bbbbb", nil
 	}
